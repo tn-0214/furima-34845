@@ -3,15 +3,15 @@
 
 ## users テーブル
 
-| Column             | Type   | Options      |
-| ------------------ | ------ | ------------ |
-| nickname           | string | null: false  |
-| email              | string | unique: true |
-| encrypted_password | string | null: false  |
-| last_name          | string | null: false  |
-| first_name         | string | null: false  |
-| last_name_kana     | string | null: false  |
-| first_name_kana    | string | null: false  |
+| Column             | Type   | Options                    |
+| ------------------ | ------ | -------------------------- |
+| nickname           | string | null: false                |
+| email              | string | unique: true , null: false |
+| encrypted_password | string | null: false                |
+| last_name          | string | null: false                |
+| first_name         | string | null: false                |
+| last_name_kana     | string | null: false                |
+| first_name_kana    | string | null: false                |
 
 ### Association
 - has_many :items
@@ -21,7 +21,7 @@
 
 | Column       | Type       | Options           |
 | ------------ | ---------- | ----------------- |
-| name         | text       | null: false       |
+| name         | string       | null: false       |
 | comment      | text       | null: false       |
 | category_id  | integer    | null: false       |
 | condition_id | integer    | null: false       |
@@ -34,7 +34,6 @@
 ### Association
 
 - belongs_to :user
-- has_one :destination
 - has_one :purchase
 
 ## destinations テーブル
@@ -51,7 +50,7 @@
 
 ### Association
 
-- has_one :item
+- belongs_to :purchases
 
 ## purchases テーブル
 
@@ -65,3 +64,4 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :destination

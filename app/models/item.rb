@@ -16,8 +16,13 @@ class Item < ApplicationRecord
     validates :etd_id
   end
 
-  validates :price, presence: true, numericality: {:greater_than_or_equql_to => 300, :less_than_or_equal_to => 9999999}, format: { with: /\A[0-9]+\z/, message: '半角数字を使用してください' } 
+  validates :price, presence: true, numericality: { only_integer: true,message:'半角数字を使用してください' },inclusion: { in: 300..9999999 }
+  
 
-  validates :image, presence: true
+  with_options presence: true do
+    validates :name
+    validates :comment
+    validates :image
+  end
 
 end

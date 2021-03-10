@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :etd
   belongs_to :postage
+  belongs_to :purchase ,optional: true
 
   with_options presence: true, numericality: { other_than: 1 }  do
     validates :category_id

@@ -12,7 +12,7 @@ RSpec.describe Item , type: :model do
       end
 
       it 'priceが300円以上なら登録できること' do
-        @item.price = '301'
+        @item.price = 301
         expect(@item).to be_valid
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe Item , type: :model do
       end
 
       it 'category_idが1では登録できないこと' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
@@ -50,7 +50,7 @@ RSpec.describe Item , type: :model do
       end
 
       it 'condition_idが1では登録できないこと' do
-        @item.condition_id = '1'
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
@@ -62,7 +62,7 @@ RSpec.describe Item , type: :model do
       end
 
       it 'postage_idが1では登録できないこと' do
-        @item.postage_id = '1'
+        @item.postage_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage must be other than 1")
       end
@@ -74,7 +74,7 @@ RSpec.describe Item , type: :model do
       end
 
       it 'ship_form_idが1では登録できないこと' do
-        @item.ship_form_id = '1'
+        @item.ship_form_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship form must be other than 1")
       end
@@ -86,7 +86,7 @@ RSpec.describe Item , type: :model do
       end
 
       it 'etd_idが1では登録できないこと' do
-        @item.etd_id = '1'
+        @item.etd_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Etd must be other than 1")
       end
@@ -98,13 +98,13 @@ RSpec.describe Item , type: :model do
       end
 
       it 'priceが300未満では登録できないこと' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
 
       it 'priceが10000000以上では登録できないこと' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
@@ -117,6 +117,12 @@ RSpec.describe Item , type: :model do
 
       it 'priceに記号が含まれると登録できないこと' do
         @item.price = '400!'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 半角数字を使用してください")
+      end
+
+      it 'priceが半角英語だけでは登録できないこと' do
+        @item.price = 'aaaa'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price 半角数字を使用してください")
       end

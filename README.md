@@ -13,7 +13,7 @@
 | last_name_kana     | string  | null: false                |
 | first_name_kana    | string  | null: false                |
 | birthday           | date    | null: false                |
-
+ 
 ### Association
 - has_many :items
 - has_many :purchases

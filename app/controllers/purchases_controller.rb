@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_root
   before_action :set_item
+   before_action :move_to_root
 
   def index
     @destination_purchase = DestinationPurchase.new
@@ -33,7 +33,6 @@ def pay_item
 end
 
 def move_to_root
-  @item = Item.find(params[:item_id])
   if current_user == @item.user
     redirect_to root_path
   elsif @item.purchase.present?

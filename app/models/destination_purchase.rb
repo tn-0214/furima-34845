@@ -1,6 +1,6 @@
 class DestinationPurchase
   include ActiveModel::Model
-  attr_accessor :postal_code, :ship_form_id, :city, :address, :building, :phone_number, :user_id, :item_id ,:purchase_id, :token
+  attr_accessor :postal_code, :ship_form_id, :city, :address, :building, :phone_number, :user_id, :item_id ,:token
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "半角ハイフンを含めた7桁の数字を入力してください"}

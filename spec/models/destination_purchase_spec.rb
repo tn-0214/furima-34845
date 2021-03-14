@@ -41,7 +41,7 @@ RSpec.describe DestinationPurchase, type: :model do
     it "postal_codeが空では登録できないこと" do
       @destination_purchase.postal_code =  "" 
       @destination_purchase.valid?
-      expect(@destination_purchase.errors.full_messages).to include("Postal code can't be blank", "Postal code 半角ハイフンを含めた7桁の数字を入力してください")
+      expect(@destination_purchase.errors.full_messages).to include("Postal code can't be blank")
     end
 
     it "postal_codeに-が入っていないと登録できないこと" do
@@ -53,7 +53,7 @@ RSpec.describe DestinationPurchase, type: :model do
     it "ship_form_idが空では登録できないこと" do
       @destination_purchase.ship_form_id = nil
       @destination_purchase.valid?
-      expect(@destination_purchase.errors.full_messages).to include("Ship form can't be blank", "Ship form is not a number")
+      expect(@destination_purchase.errors.full_messages).to include("Ship form can't be blank")
     end
 
     it "ship_form_idが1では登録できないこと" do
@@ -77,7 +77,7 @@ RSpec.describe DestinationPurchase, type: :model do
     it "電話番号が空では登録ができないこと" do
       @destination_purchase.phone_number = ""
       @destination_purchase.valid?
-      expect(@destination_purchase.errors.full_messages).to include("Phone number can't be blank", "Phone number 11桁の半角数字で入力してください")
+      expect(@destination_purchase.errors.full_messages).to include("Phone number can't be blank")
     end
 
     it "電話番号が全角を含むと登録ができないこと" do

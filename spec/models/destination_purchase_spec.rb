@@ -3,8 +3,12 @@ require 'rails_helper'
 RSpec.describe DestinationPurchase, type: :model do
   describe '#create' do
     before do
-    @destination_purchase = FactoryBot.build(:destination_purchase)
+    user =  FactoryBot.create(:user)
+    item =  FactoryBot.create(:item)
+    sleep 0.5
+    @destination_purchase = FactoryBot.build(:destination_purchase, user_id: user.id, item_id: item.id)
   end
+
   context '購入成功時' do
     it "全て規定通りに入力されていれば購入できること" do
       expect(@destination_purchase).to be_valid
@@ -13,10 +17,17 @@ RSpec.describe DestinationPurchase, type: :model do
       @destination_purchase.postal_code = "000-0000"
       expect(@destination_purchase).to be_valid
     end
+    
     it "数値のみの11桁で電話番号が登録できること" do
       @destination_purchase.phone_number = "09012345678"
       expect(@destination_purchase).to be_valid
     end
+
+    it "buildingが空でも購入できること" do
+      @destination_purchase.building = ""
+      expect(@destination_purchase).to be_valid
+    end
+
   end
 
   context '購入失敗時' do
@@ -79,6 +90,18 @@ RSpec.describe DestinationPurchase, type: :model do
       @destination_purchase.phone_number = "0A000000000"
       @destination_purchase.valid?
       expect(@destination_purchase.errors.full_messages).to include("Phone number 11桁の半角数字で入力してください")
+    end
+
+    it "user_idが空だと登録ができないこと" do
+      @destination_purchase.user_id = nil
+      @destination_purchase.valid?
+      expect(@destination_purchase.errors.full_messages).to include("User can't be blank")
+    end
+
+    it "item_idが空だと登録ができないこと" do
+      @destination_purchase.item_id = nil
+      @destination_purchase.valid?
+      expect(@destination_purchase.errors.full_messages).to include("Item can't be blank")
     end
   end
   end

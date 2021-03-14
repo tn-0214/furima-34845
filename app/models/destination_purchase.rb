@@ -9,8 +9,8 @@ class DestinationPurchase
     validates :address
     validates :phone_number, format: {with: /\A\d{11}\z/, message: "11桁の半角数字で入力してください"}
     validates :token
-    validates :user
-    validates :item
+    validates :user_id
+    validates :item_id
   end
 
 

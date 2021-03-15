@@ -34,7 +34,7 @@ RSpec.describe Item , type: :model do
       it 'category_idが空では登録できないこと' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank", "Category is not a number")
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it 'category_idが1では登録できないこと' do
@@ -46,7 +46,7 @@ RSpec.describe Item , type: :model do
       it 'condition_idが空では登録できないこと' do
         @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank", "Condition is not a number")
+        expect(@item.errors.full_messages).to include("Condition can't be blank",)
       end
 
       it 'condition_idが1では登録できないこと' do
@@ -58,7 +58,7 @@ RSpec.describe Item , type: :model do
       it 'postage_idが空では登録できないこと' do
         @item.postage_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Postage can't be blank", "Postage is not a number")
+        expect(@item.errors.full_messages).to include("Postage can't be blank")
       end
 
       it 'postage_idが1では登録できないこと' do
@@ -70,7 +70,7 @@ RSpec.describe Item , type: :model do
       it 'ship_form_idが空では登録できないこと' do
         @item.ship_form_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Ship form can't be blank", "Ship form is not a number")
+        expect(@item.errors.full_messages).to include("Ship form can't be blank")
       end
 
       it 'ship_form_idが1では登録できないこと' do
@@ -82,7 +82,7 @@ RSpec.describe Item , type: :model do
       it 'etd_idが空では登録できないこと' do
         @item.etd_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Etd can't be blank", "Etd is not a number")
+        expect(@item.errors.full_messages).to include("Etd can't be blank")
       end
 
       it 'etd_idが1では登録できないこと' do
@@ -94,7 +94,7 @@ RSpec.describe Item , type: :model do
       it 'priceが空では登録できないこと' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not included in the list", "Price 半角数字を使用してください")
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'priceが300未満では登録できないこと' do
